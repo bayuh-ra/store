@@ -60,6 +60,7 @@ function App() {
               key={`product-${product.id}`}
               imageSrc={product.image}
               name={product.title}
+              id={product.id}
             ></ProductCard>
           ))}
         </div>

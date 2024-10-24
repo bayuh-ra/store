@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const Products = () => {
+const Product = () => {
   const params = useParams();
   const [product, setProduct] = useState(null);
 
@@ -17,7 +17,7 @@ const Products = () => {
         }
 
         const data = await response.json();
-        setProducts(data);
+        setProduct(data);
       } catch (error) {
         console.log(error);
       }
@@ -38,7 +38,7 @@ const Products = () => {
       <div className="text-left">
         <h3 className="font-bold text-xl text-left">{product.title}</h3>
         <div className="block mb-8">
-          <span className="border rounded-lg p-1 bg-green-900 text-white mb-8">
+          <span className="border rounded-lg p-1 bg-red-500 text-white mb-8">
             {product.categpry}
           </span>
         </div>
@@ -49,4 +49,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Product;

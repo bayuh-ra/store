@@ -9,9 +9,12 @@ const ProductCard = ({ imageSrc, name, id }) => {
       <span className="font-bold text-sm">{name}</span>
 
       <div>
-        <Link></Link>
-        name="View" onClick={() => console.log(name)}
-        className="bg-green-500 hover:bg-green-500/70" />
+        <Link
+          to={`/products/${id}`}
+          className="bg-red-500 hover:bg-red-600/70 px-4 py-2 rounded-lg"
+        >
+          View
+        </Link>
       </div>
     </div>
   );
