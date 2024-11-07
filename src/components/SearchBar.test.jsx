@@ -1,7 +1,7 @@
 import { describe, expect } from "vitest";
 import SearchBar from "./SearchBar";
 import { useState } from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 const SearchbaWrapped = () => {
   const [query, setQuery] = useState("");
@@ -29,11 +29,19 @@ describe("SearchBar component", () => {
     const checkbox = await screen.findByTestId("search-checkbox");
     const select = await screen.findByTestId("search-select");
 
-    expect(txt).toBeInTheDocument();
-    expect(checkbox).toBeInTheDocument();
-    expect(checkbox.nextElementSibling.textContect).toBe(
-      "Only Show products in stock"
-    );
-    expect(select).toBeInTheDocument();
+    fireEvent.change(txt, { target: { value: "Sample" } });
+    expect(txt.value).toBe("Sample");
+
+    //Test of checkbox
+    fireEvent.click(checkbox);
+    expect(checkbox.checked).toBeTruthy();
+    fireEvent.click(checkbox);
+    expect(checkbox.checked).toBeFalsy();
+
+    //Test of select
+    fireEvent.change(select, { target: { value: "desc" } });
+    expect(select.value).toBe("desc");
+    fireEvent.change(select, { target: { value: "asc" } });
+    expect(select.value).toBe("asc");
   });
 });
